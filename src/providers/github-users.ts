@@ -12,9 +12,20 @@ export class GithubUsers {
 
 	constructor(public http: Http) { }
 
-	// method to load the github users
+	/**
+		loads a jsonObject from https://api.github.com/users
+	*/
 	load(): Observable<User[]> {
 		return this.http.get(this.githubApiUrl + '/users')
 		.map(res => <User[]>res.json());
 	}
+
+	/**
+		given a user's login, obtain their profile details from https://api.github.com/users/__theirUsername__
+	*/
+	loadDetails(login: string): Observable<User> {
+		return this.http.get(this.githubApiUrl + '/users/' + login)
+			.map(res => <User>( res.json()) );
+	}
+
 }

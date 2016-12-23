@@ -14,7 +14,7 @@
 	<h3>Users view page</h3>
 
 	<ion-list>
-		<button ion-item *ngFor="let user of users">
+		<button ion-item *ngFor="let user of users" (click)="goToDetails(user.login)">
 			<ion-avatar ion-left>
 				<img [src]="user.avatar_url">
 			</ion-avatar>

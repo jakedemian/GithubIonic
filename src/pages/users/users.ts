@@ -1,14 +1,18 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+// models
 import { User } from '../../models/user';
-import { GithubUsers } from '../../providers/github-users';
-/*
-  Generated class for the Users page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
+// providers
+import { GithubUsers } from '../../providers/github-users';
+
+// pages
+import { UserDetailsPage } from '../user-details/user-details';
+
+
+// so i guess this @component ... export shit is basically defining a class that 
+// is directly hooked to (and controlling all the logic for) the page listed.
 @Component({
   selector: 'page-users',
   templateUrl: 'users.html'
@@ -23,12 +27,17 @@ export class UsersPage {
   constructor(public navCtrl: NavController, private githubUsers: GithubUsers) {
   	githubUsers.load().subscribe(response => {
   		this.users = response;
-  		console.log(this.users);
   	});
   }
 
   ionViewDidLoad() {
     console.log('Hello Users Page');
+  }
+
+  goToDetails(login: string){
+    // open the user details page, passing in their username
+    // NOTE: {login} is shorthand for {login: login}, so this is technically a json object
+    this.navCtrl.push(UserDetailsPage, {login});
   }
 
 }

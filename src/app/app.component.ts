@@ -23,7 +23,7 @@ export class MyApp {
   ) {
     this.initializeApp();
 
-    // set our app's pages
+    // set our app's base pages (don't think stack pages go here)
     this.pages = [
       { title: 'Users', component: UsersPage },
       { title: 'Repos', component: ReposPage },
